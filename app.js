@@ -1,9 +1,13 @@
 const express = require("express")
 require("dotenv").config()
+require("./helpers/mongoose_init")
 const createError = require("http-errors")
 const authRoute = require("./routes/auth.route")
 const app = express()
 const port = process.env.PORT || 8080
+
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 app.get("/", (req, res) => {
     res.send("Hello")
